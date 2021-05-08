@@ -1,2 +1,1 @@
-web:gunicorn
-Interactive_plot:server
+web: gunicorn Interactive_plot:server
