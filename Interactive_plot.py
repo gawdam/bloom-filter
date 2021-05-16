@@ -160,7 +160,7 @@ def update_graph(choice):
         minimum = 1
         maximum = 20
         marks = {2*i: '{}'.format(20 * i) for i in range(10)}
-        step = 10
+        step = 1
         value = 10
         title = "Number of Input Elements 'n':"
         pass
