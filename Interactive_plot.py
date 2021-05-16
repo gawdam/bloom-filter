@@ -25,7 +25,7 @@ app.layout = html.Div([
     dbc.Row(
 
         dbc.Col(html.Div("Bloom Filter - Probability of False Positives",
-                         style={"text-align": "center", "font-size": "200%",
+                         style={"text-align": "center", "font-size": "150%",
                                 "color": "black"})
                 , width={'size': 12, 'offset': 0}
                 )),
@@ -35,7 +35,7 @@ app.layout = html.Div([
     dbc.Row([
         dbc.Col(
             html.Label('Choose plot:',
-                       style={"width": "100%", "text-align": "left", "font-size": "80%", "color": "black",'padding-left':'10%','font-family': 'Verdana'}),
+                       style={"width": "100%", "text-align": "left", "font-size": "100%", "color": "black",'padding-left':'10%','font-family': 'Verdana'}),
             width={'size': 4, 'offset': 0}
         ),
         dbc.Col(
@@ -58,12 +58,11 @@ app.layout = html.Div([
             width={'size': 3, 'offset': 0}
         ),
     ], align='center'),
-    html.Br(),
     dbc.Row([
         dbc.Col(
             html.Pre(id="slider-1-name",
                      children="Number of Hash Functions 'k':",
-                     style={"width": "100%", "text-align": "left", "font-size": "80%", "color": "black",
+                     style={"width": "100%", "text-align": "left", "font-size": "100%", "color": "black",
                             "font-family": "Verdana",'padding-left':'10%'})
             ,
             width={'size': 4, 'offset': 0},
@@ -77,13 +76,11 @@ app.layout = html.Div([
             style={'text-align': 'left', 'width': '100%', 'padding-left': '0%', 'padding-right': '10%'},
             width={'size': 8, 'offset': 0}
         )]),
-    html.Br(),
-
     dbc.Row([
         dbc.Col(
             html.Pre(id="slider-2-name",
                      children="Size of Bitarray 'm':",
-                     style={"width": "100%", "text-align": "left", "font-size": "80%", "color": "black",
+                     style={"width": "100%", "text-align": "left", "font-size": "100%", "color": "black",
                             "font-family": "Verdana",'padding-left':'10%'})
             ,
             width={'size': 4, 'offset': 0}
