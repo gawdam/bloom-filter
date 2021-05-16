@@ -59,7 +59,7 @@ app.layout = html.Div([
 
         dbc.Col(
             html.Pre(id="slider-1-name",
-                     title="Number of Hash Functions 'k':",
+                     children="Number of Hash Functions 'k':",
                      style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
                             "font-family": "Verdana"})
             ,
@@ -67,7 +67,7 @@ app.layout = html.Div([
         ),
         dbc.Col(
             html.Pre(id="slider-2-name",
-                     title="Size of Bitarray 'm':",
+                     children="Size of Bitarray 'm':",
                      style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
                             "font-family": "Verdana"})
             ,
@@ -109,7 +109,7 @@ app.layout = html.Div([
         Output('slider-1', 'marks'),
         Output('slider-1', 'step'),
         Output('slider-1', 'value'),
-        Output('slider-1-name', 'title'),
+        Output('slider-1-name', 'children'),
     ],
     Input('plot-dropdown', 'value')
 )
@@ -141,7 +141,7 @@ def update_graph(choice):
         Output('slider-2', 'marks'),
         Output('slider-2', 'step'),
         Output('slider-2', 'value'),
-        Output('slider-2-name', 'title'),
+        Output('slider-2-name', 'children'),
     ],
     Input('plot-dropdown', 'value')
 )
@@ -170,7 +170,6 @@ def update_graph(choice):
     [Input('plot-dropdown', 'value'), Input('slider-1', 'value'), Input('slider-2', 'value')]
 )
 def update_graph(choice, v1, v2):
-
     k = v1
     m = v2 * 50
     n = np.arange(1, 200, 1)
