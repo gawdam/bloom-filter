@@ -29,6 +29,9 @@ app.layout = html.Div([
                                 "color": "black"})
                 , width={'size': 12, 'offset': 0}
                 )),
+    html.Br(),
+    html.Br(),
+
     dbc.Row([
         dbc.Col(
             html.Label('Choose plot:',
@@ -55,7 +58,7 @@ app.layout = html.Div([
             width={'size': 3, 'offset': 0}
         ),
     ], align='center'),
-
+    html.Br(),
     dbc.Row([
         dbc.Col(
             html.Pre(id="slider-1-name",
@@ -63,7 +66,7 @@ app.layout = html.Div([
                      style={"width": "100%", "text-align": "left", "font-size": "100%", "color": "black",
                             "font-family": "Verdana"})
             ,
-            width={'size': 4, 'offset': 0},
+            width={'size': 3, 'offset': 0},
         ),
 
         dbc.Col([
@@ -72,8 +75,10 @@ app.layout = html.Div([
             ),
             html.Div(id='slider-output-container-1')],
             style={'text-align': 'left', 'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
-            width={'size': 8, 'offset': 0}
+            width={'size': 9, 'offset': 0}
         )]),
+    html.Br(),
+
     dbc.Row([
         dbc.Col(
             html.Pre(id="slider-2-name",
@@ -81,7 +86,7 @@ app.layout = html.Div([
                      style={"width": "100%", "text-align": "left", "font-size": "100%", "color": "black",
                             "font-family": "Verdana"})
             ,
-            width={'size': 4, 'offset': 0}
+            width={'size': 3, 'offset': 0}
         ),
 
         dbc.Col([
@@ -91,7 +96,7 @@ app.layout = html.Div([
             ),
             html.Div(id='slider-output-container-2')],
             style={'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
-            width={'size': 8, 'offset': 0}
+            width={'size': 9, 'offset': 0}
         ),
     ]),
     html.Div([
@@ -116,7 +121,7 @@ app.layout = html.Div([
 def update_graph(choice):
     minimum = 1
     maximum = 20
-    marks = {i: '{}'.format(i) for i in range(20)}
+    marks = {2*i: '{}'.format(2*i) for i in range(10)}
     step = 1
     value = 10
     title = "Number of Hash Functions 'k':"
@@ -124,7 +129,7 @@ def update_graph(choice):
     if choice == 2:
         minimum = 1
         maximum = 20
-        marks = {i: '{}'.format(10 * i) for i in range(20)}
+        marks = {2*i: '{}'.format(20 * i) for i in range(10)}
         step = 10
         value = 10
         title = "Number of Input Elements 'n':"
@@ -148,7 +153,7 @@ def update_graph(choice):
 def update_graph(choice):
     minimum = 1
     maximum = 20
-    marks = {i: '{}'.format(50 * i) for i in range(20)}
+    marks = {2*i: '{}'.format(100 * i) for i in range(10)}
     step = 50
     value = 15
     title = "Size of Bitarray 'm':"
@@ -156,7 +161,7 @@ def update_graph(choice):
     if choice == 3:
         minimum = 1
         maximum = 20
-        marks = {i: '{}'.format(10 * i) for i in range(20)}
+        marks = {2*i: '{}'.format(20 * i) for i in range(10)}
         step = 10
         value = 10
         title = "Number of Input Elements 'n':"
@@ -186,7 +191,7 @@ def update_graph(choice, v1, v2):
 
     elif choice == 3:
         k = v1
-        m = np.arange(1, 200, 5)
+        m = np.arange(1, 1000, 5)
         n = v2 * 10
         x = m
         title = "Bitarray Size"
