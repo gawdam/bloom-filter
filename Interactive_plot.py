@@ -29,12 +29,10 @@ app.layout = html.Div([
                                 "color": "black"})
                 , width={'size': 12, 'offset': 0}
                 )),
-    html.Br(),
-    html.Br(),
     dbc.Row([
         dbc.Col(
             html.Label('Choose plot:',
-                       style={"width": "100%", "text-align": "right", "font-size": "15px", "color": "black"}),
+                       style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",'font-family': 'Verdana'}),
             width={'size': 1, 'offset': 0}
         ),
         dbc.Col(
@@ -56,34 +54,36 @@ app.layout = html.Div([
                          ),
             width={'size': 1, 'offset': 0}
         ),
+    ], align='center'),
 
+    dbc.Row([
         dbc.Col(
             html.Pre(id="slider-1-name",
                      children="Number of Hash Functions 'k':",
                      style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
                             "font-family": "Verdana"})
             ,
-            width={'size': 4, 'offset': 1},
+            #width={'size': 4, 'offset': 0},
         ),
-        dbc.Col(
-            html.Pre(id="slider-2-name",
-                     children="Size of Bitarray 'm':",
-                     style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
-                            "font-family": "Verdana"})
-            ,
-            width={'size': 5, 'offset': 0}
-        )
-    ], align='center'),
 
-    dbc.Row([
         dbc.Col([
             dcc.Slider(
                 id='slider-1',
             ),
             html.Div(id='slider-output-container-1')],
             style={'text-align': 'left', 'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
-            width={'size': 4, 'offset': 3}
+            #width={'size': 5, 'offset': 0}
+        )]),
+    dbc.Row([
+        dbc.Col(
+            html.Pre(id="slider-2-name",
+                     children="Size of Bitarray 'm':",
+                     style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
+                            "font-family": "Verdana"})
+            ,
+            #width={'size': 4, 'offset': 0}
         ),
+
         dbc.Col([
             dcc.Slider(
                 id='slider-2',
@@ -91,7 +91,7 @@ app.layout = html.Div([
             ),
             html.Div(id='slider-output-container-2')],
             style={'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
-            width={'size': 5, 'offset': 0}
+            #width={'size': 5, 'offset': 0}
         ),
     ]),
     html.Div([

@@ -58,15 +58,19 @@ app.layout = html.Div([
         ),
 
         dbc.Col(
-            html.Pre(children="Number of Hash Functions 'k':",
+            html.Pre(id="slider-1-name",
+                     children="Number of Hash Functions 'k':",
                      style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
-                            "font-family": "Verdana"}),
+                            "font-family": "Verdana"})
+            ,
             width={'size': 4, 'offset': 1},
         ),
         dbc.Col(
-            html.Pre(children="Size of Bitarray 'm':",
+            html.Pre(id="slider-2-name",
+                     children="Size of Bitarray 'm':",
                      style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
-                            "font-family": "Verdana"}),
+                            "font-family": "Verdana"})
+            ,
             width={'size': 5, 'offset': 0}
         )
     ], align='center'),
@@ -74,28 +78,18 @@ app.layout = html.Div([
     dbc.Row([
         dbc.Col([
             dcc.Slider(
-                id='k-slider',
-                min=1,
-                max=20,
-                marks={i: '{}'.format(i) for i in range(20)},
-                step=1,
-                value=10,
+                id='slider-1',
             ),
-            html.Div(id='slider-output-container-k')],
+            html.Div(id='slider-output-container-1')],
             style={'text-align': 'left', 'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
             width={'size': 4, 'offset': 3}
         ),
         dbc.Col([
             dcc.Slider(
-                id='m-slider',
-                min=1,
-                max=20,
-                marks={i: '{}'.format(50 * i) for i in range(20)},
-                step=50,
-                value=15,
+                id='slider-2',
                 updatemode='drag',
             ),
-            html.Div(id='slider-output-container-m')],
+            html.Div(id='slider-output-container-2')],
             style={'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
             width={'size': 5, 'offset': 0}
         ),
@@ -109,21 +103,99 @@ app.layout = html.Div([
 
 # ---------------------------------------------------------------
 @app.callback(
-    Output('the_graph', 'figure'),
-    [Input('plot-dropdown', 'value'), Input('k-slider', 'value'), Input('m-slider', 'value')]
+    [
+        Output('slider-1', 'min'),
+        Output('slider-1', 'max'),
+        Output('slider-1', 'marks'),
+        Output('slider-1', 'step'),
+        Output('slider-1', 'value'),
+        Output('slider-1-name', 'children'),
+    ],
+    Input('plot-dropdown', 'value')
 )
-def update_graph(choice, k, m):
-    m = m * 50
+def update_slider_1(choice):
+    minimum = 1
+    maximum = 20
+    marks = {i: '{}'.format(i) for i in range(20)}
+    step = 1
+    value = 10
+    title = "Number of Hash Functions 'k':"
+    # update slider to hold k
+    if choice == 2:
+        minimum = 1
+        maximum = 20
+        marks = {i: '{}'.format(10 * i) for i in range(20)}
+        step = 10
+        value = 10
+        title = "Number of Input Elements 'n':"
+        pass
+        # update slider to hold n
+    return minimum, maximum, marks, step, value, title
 
-    t = np.arange(1, array_size_max, 1)
-    x = t
-    y = [(1 - math.exp(-k * 1.0 / (m * 1.0 / x * 1.0))) ** k for x in t]
-    data = {'Input array size': x,
+
+# ---------------------------------------------------------------
+@app.callback(
+    [
+        Output('slider-2', 'min'),
+        Output('slider-2', 'max'),
+        Output('slider-2', 'marks'),
+        Output('slider-2', 'step'),
+        Output('slider-2', 'value'),
+        Output('slider-2-name', 'children'),
+    ],
+    Input('plot-dropdown', 'value')
+)
+def update_slider_2(choice):
+    minimum = 1
+    maximum = 20
+    marks = {i: '{}'.format(50 * i) for i in range(20)}
+    step = 50
+    value = 15
+    title = "Size of Bitarray 'm':"
+    # update slider to hold m
+    if choice == 3:
+        minimum = 1
+        maximum = 20
+        marks = {i: '{}'.format(10 * i) for i in range(20)}
+        step = 10
+        value = 10
+        title = "Number of Input Elements 'n':"
+        pass
+    return minimum, maximum, marks, step, value, title
+
+
+# ---------------------------------------------------------------
+@app.callback(
+    Output('the_graph', 'figure'),
+    [Input('plot-dropdown', 'value'), Input('slider-1', 'value'), Input('slider-2', 'value')]
+)
+def update_graph(choice, v1, v2):
+    k = v1
+    m = v2 * 50
+    n = np.arange(1, 200, 1)
+    x = n
+    y = [(1 - math.exp(-k * 1.0 / (m * 1.0 / x * 1.0))) ** k for x in n]
+    title = 'Input array size'
+    if choice == 2:
+        k = np.arange(1, 50, 1)
+        m = v2 * 50
+        n = v1 * 10
+        x = k
+        y = [(1 - math.exp(-x * 1.0 / (m * 1.0 / n * 1.0))) ** x for x in k]
+        title = 'Number of hash functions'
+
+    elif choice == 3:
+        k = v1
+        m = np.arange(1, 200, 5)
+        n = v2 * 10
+        x = m
+        title = "Bitarray Size"
+        y = [(1 - math.exp(-k * 1.0 / (x * 1.0 / n * 1.0))) ** k for x in m]
+
+    data = {title: x,
             'Probability': y}
-    print(len(x), len(y))
-
     df = pd.DataFrame(data)
-    scatterplot = px.line(df, x="Input array size",
+    scatterplot = px.line(df, x=title,
                           y="Probability",
                           hover_data=['Probability'], range_y=[0, 1],
                           height=550
