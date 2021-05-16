@@ -152,7 +152,7 @@ def update_graph(choice):
     minimum = 1
     maximum = 20
     marks = {2*i: '{}'.format(100 * i) for i in range(10)}
-    step = 50
+    step = 1
     value = 15
     title = "Size of Bitarray 'm':"
     # update slider to hold m
