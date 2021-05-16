@@ -24,7 +24,7 @@ app.layout = html.Div([
     html.Br(),
     dbc.Row(
 
-        dbc.Col(html.Div("Bloom Filter - Probability of False Positives",
+        dbc.Col(html.Div("<b>Bloom Filter</b> - Probability of False Positives",
                          style={"text-align": "center", "font-size": "150%",
                                 "color": "black"})
                 , width={'size': 12, 'offset': 0}
