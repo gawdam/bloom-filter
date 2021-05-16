@@ -33,7 +33,7 @@ app.layout = html.Div([
         dbc.Col(
             html.Label('Choose plot:',
                        style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",'font-family': 'Verdana'}),
-            width={'size': 1, 'offset': 0}
+            width={'size': 3, 'offset': 0}
         ),
         dbc.Col(
             dcc.Dropdown(id='plot-dropdown',
@@ -52,7 +52,7 @@ app.layout = html.Div([
                          clearable=False,  # allow user to removes the selected value
                          style={'width': "100%", 'font-family': 'Verdana', "text-align": "left"},
                          ),
-            width={'size': 1, 'offset': 0}
+            width={'size': 3, 'offset': 0}
         ),
     ], align='center'),
 
@@ -63,7 +63,7 @@ app.layout = html.Div([
                      style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
                             "font-family": "Verdana"})
             ,
-            #width={'size': 4, 'offset': 0},
+            width={'size': 4, 'offset': 0},
         ),
 
         dbc.Col([
@@ -72,7 +72,7 @@ app.layout = html.Div([
             ),
             html.Div(id='slider-output-container-1')],
             style={'text-align': 'left', 'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
-            #width={'size': 5, 'offset': 0}
+            width={'size': 8, 'offset': 0}
         )]),
     dbc.Row([
         dbc.Col(
@@ -81,7 +81,7 @@ app.layout = html.Div([
                      style={"width": "100%", "text-align": "left", "font-size": "20px", "color": "black",
                             "font-family": "Verdana"})
             ,
-            #width={'size': 4, 'offset': 0}
+            width={'size': 4, 'offset': 0}
         ),
 
         dbc.Col([
@@ -91,7 +91,7 @@ app.layout = html.Div([
             ),
             html.Div(id='slider-output-container-2')],
             style={'width': '100%', 'padding-left': '0%', 'padding-right': '0%'},
-            #width={'size': 5, 'offset': 0}
+            width={'size': 8, 'offset': 0}
         ),
     ]),
     html.Div([
