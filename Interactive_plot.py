@@ -74,7 +74,7 @@ app.layout = html.Div([
                 id='slider-1',
             ),
             html.Div(id='slider-output-container-1')],
-            style={'text-align': 'left', 'width': '100%', 'padding-left': '0%', 'padding-right': '7%'},
+            style={'text-align': 'left', 'width': '100%', 'padding-left': '0%', 'padding-right': '5%'},
             width={'size': 8, 'offset': 0}
         )]),
     dbc.Row([
@@ -82,7 +82,7 @@ app.layout = html.Div([
             html.Pre(id="slider-2-name",
                      children="Size of Bitarray 'm':",
                      style={"width": "100%", "text-align": "left", "font-size": "95%", "color": "black",
-                            "font-family": "Verdana",'padding-left':'10%'})
+                            "font-family": "Verdana",'padding-left':'7%'})
             ,
             width={'size': 4, 'offset': 0}
         ),
@@ -93,7 +93,7 @@ app.layout = html.Div([
                 updatemode='drag',
             ),
             html.Div(id='slider-output-container-2')],
-            style={'width': '100%', 'padding-left': '0%', 'padding-right': '10%'},
+            style={'width': '100%', 'padding-left': '0%', 'padding-right': '5%'},
             width={'size': 8, 'offset': 0}
         ),
     ]),
